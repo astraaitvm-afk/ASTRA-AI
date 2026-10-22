@@ -20,19 +20,35 @@ export default function TechBackground() {
     let width = (canvas.width = window.innerWidth)
     let height = (canvas.height = window.innerHeight)
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const speedFactor = prefersReducedMotion ? 0.2 : 1.0
+    const colors = ['#8b72e5', '#5ee0b4', '#7eb8ff', '#a68cff']
+    const createParticles = (particleWidth, particleHeight) => {
+      const minNodeCount = particleWidth < 480 ? 28 : 50
+      const nodeCount = Math.min(Math.max(Math.floor((particleWidth * particleHeight) / 16000), minNodeCount), 105)
+
+      return Array.from({ length: nodeCount }, () => ({
+        x: Math.random() * particleWidth,
+        y: Math.random() * particleHeight,
+        vx: (Math.random() - 0.5) * 0.45 * speedFactor,
+        vy: (Math.random() - 0.5) * 0.45 * speedFactor,
+        radius: Math.random() * 2.2 + 1.2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.45 + 0.45,
+      }))
+    }
+    let particles = createParticles(width, height)
+
     const handleResize = () => {
       if (resizeRaf) cancelAnimationFrame(resizeRaf)
       resizeRaf = requestAnimationFrame(() => {
         if (!canvas) return
         width = canvas.width = window.innerWidth
         height = canvas.height = window.innerHeight
+        particles = createParticles(width, height)
       })
     }
     window.addEventListener('resize', handleResize, { passive: true })
-
-    // Check reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const speedFactor = prefersReducedMotion ? 0.2 : 1.0
 
     // Mouse tracking for physics & interactive connections
     const mouse = {
@@ -87,20 +103,6 @@ export default function TechBackground() {
     window.addEventListener('pointermove', handlePointerMove, { passive: true })
     window.addEventListener('mouseleave', handlePointerLeave, { passive: true })
     window.addEventListener('mouseenter', handlePointerEnter, { passive: true })
-
-    // Particle nodes configuration (capped efficiently for performance)
-    const nodeCount = Math.min(Math.max(Math.floor((width * height) / 16000), 50), 105)
-    const colors = ['#8b72e5', '#5ee0b4', '#7eb8ff', '#a68cff']
-
-    const particles = Array.from({ length: nodeCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45 * speedFactor,
-      vy: (Math.random() - 0.5) * 0.45 * speedFactor,
-      radius: Math.random() * 2.2 + 1.2,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      alpha: Math.random() * 0.45 + 0.45,
-    }))
 
     // Precomputed squared distances to eliminate thousands of Math.sqrt operations
     const maxLineDist = 145

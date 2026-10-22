@@ -12,14 +12,20 @@ const navItems = [
 export default function Header({ theme, onToggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // Close mobile menu on Escape key for keyboard accessibility
+  // Lock background scrolling and close on Escape key when mobile menu is open
   useEffect(() => {
     if (!menuOpen) return
+
+    document.body.style.overflow = 'hidden'
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setMenuOpen(false)
     }
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
   }, [menuOpen])
 
   return (

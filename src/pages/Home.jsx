@@ -13,6 +13,7 @@ const steps = [
 export default function Home() {
   return (
     <>
+      {/* 1. Hero Section */}
       <section className="hero section-pad">
         <div className="hero-grid container">
           <div className="hero-copy">
@@ -43,27 +44,99 @@ export default function Home() {
             <div className="visual-caption"><span>01 / YOUR JOURNEY</span><span>SCROLL TO EXPLORE <ArrowDownRight size={14} /></span></div>
           </motion.div>
         </div>
-        <div className="hero-bottom container"><span>YOUR IDEAS DESERVE TO EXIST</span><div className="hero-line" /><span>SCROLL TO BEGIN <ArrowDownRight size={14} /></span></div>
+        <div className="hero-bottom container">
+          <span>YOUR IDEAS DESERVE TO EXIST</span>
+          <div className="hero-line" />
+          <span>SCROLL TO BEGIN <ArrowDownRight size={14} /></span>
+        </div>
       </section>
 
-      <section className="trust-strip"><div className="container trust-inner"><span>SKILLS THAT MOVE YOU FORWARD</span><b><Code2 size={18} /> CODE WITH PURPOSE</b><b><Terminal size={18} /> THINK IN SYSTEMS</b><b><Sparkles size={18} /> CREATE WHAT'S NEXT</b></div></section>
+      {/* 2. Trust Strip */}
+      <section className="trust-strip">
+        <div className="container trust-inner">
+          <span>SKILLS THAT MOVE YOU FORWARD</span>
+          <b><Code2 size={18} /> CODE WITH PURPOSE</b>
+          <b><Terminal size={18} /> THINK IN SYSTEMS</b>
+          <b><Sparkles size={18} /> CREATE WHAT'S NEXT</b>
+        </div>
+      </section>
 
+      {/* 3. Courses Marquee Showcase (Full-Bleed Edge-to-Edge) */}
       <section className="section-pad section-block">
         <div className="container">
-          <Reveal><div className="section-heading"><div><span className="eyebrow">THE LEARNING PATH</span><h2>Skills for a world<br />that never <span className="gradient-text">stands still.</span></h2></div><p>From your first line of code to shipping complete applications, learn with a path designed around doing—not just watching.</p></div></Reveal>
+          <Reveal>
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">THE LEARNING PATH</span>
+                <h2>Skills for a world<br />that never <span className="gradient-text">stands still.</span></h2>
+              </div>
+              <p>From your first line of code to shipping complete applications, learn with a path designed around doing—not just watching.</p>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Full-bleed track stretching edge-to-edge */}
+        <div className="marquee-full-bleed">
           <CourseMarquee />
-          <Reveal><div className="center-action"><Link to="/courses" className="button button-outline">View all programs <ArrowRight size={16} /></Link></div></Reveal>
+        </div>
+
+        <div className="container">
+          <Reveal>
+            <div className="center-action">
+              <Link to="/courses" className="button button-outline">
+                View all programs <ArrowRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
+      {/* 4. Method Section */}
       <section className="section-pad method-section">
         <div className="container method-layout">
-          <Reveal><div className="method-intro"><span className="eyebrow">A BETTER WAY TO LEARN</span><h2>Understand it.<br /><span className="gradient-text">Build it.</span> Own it.</h2><p>Real confidence comes from making things work, solving problems, and learning how to find your way when the answer isn't obvious.</p><Link to="/about" className="text-link">Our learning philosophy <ArrowUpRight size={16} /></Link></div></Reveal>
-          <div className="steps-list">{steps.map((step, i) => <Reveal key={step.n} delay={i * 0.1}><div className="step-item"><span className="step-number">{step.n}</span><div className="step-icon"><step.icon size={20} /></div><div className="step-copy"><h3>{step.title}</h3><p>{step.text}</p></div><ArrowUpRight className="step-arrow" size={18} /></div></Reveal>)}</div>
+          <Reveal>
+            <div className="method-intro">
+              <span className="eyebrow">A BETTER WAY TO LEARN</span>
+              <h2>Understand it.<br /><span className="gradient-text">Build it.</span> Own it.</h2>
+              <p>Real confidence comes from making things work, solving problems, and learning how to find your way when the answer isn't obvious.</p>
+              <Link to="/about" className="text-link">Our learning philosophy <ArrowUpRight size={16} /></Link>
+            </div>
+          </Reveal>
+          <div className="steps-list">
+            {steps.map((step, i) => (
+              <Reveal key={step.n} delay={i * 0.1}>
+                <div className="step-item">
+                  <span className="step-number">{step.n}</span>
+                  <div className="step-icon"><step.icon size={20} /></div>
+                  <div className="step-copy">
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                  <ArrowUpRight className="step-arrow" size={18} />
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section-pad cta-section"><Reveal><div className="container cta-panel"><div className="cta-orb" /><span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span><h2>Have an idea?<br /><span className="gradient-text">Let's build it.</span></h2><p>Find the right learning path and take your first step toward creating something real.</p><Link to="/contact" className="button button-primary">Talk to our team <ArrowUpRight size={17} /></Link><span className="cta-index">ASTRA AI / 2026</span></div></Reveal></section>
+      {/* 5. CTA Section (Clean Nested Panel inside Fluid Container) */}
+      <section className="section-pad cta-section">
+        <div className="container">
+          <Reveal>
+            <div className="cta-panel">
+              <div className="cta-orb" />
+              <span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span>
+              <h2>Have an idea?<br /><span className="gradient-text">Let's build it.</span></h2>
+              <p>Find the right learning path and take your first step toward creating something real.</p>
+              <Link to="/contact" className="button button-primary">
+                Talk to our team <ArrowUpRight size={17} />
+              </Link>
+              <span className="cta-index">ASTRA AI / 2026</span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   )
 }

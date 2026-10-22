@@ -23,6 +23,13 @@ function getSanitizedTheme() {
   }
 }
 
+const PAGE_TITLES = {
+  '/': 'ASTRA AI — Build What Comes Next',
+  '/courses': 'Courses & Programs | ASTRA AI Academy',
+  '/about': 'About Us & Learning Philosophy | ASTRA AI Academy',
+  '/contact': 'Contact & Admissions | ASTRA AI Academy',
+}
+
 export default function App() {
   const [theme, setTheme] = useState(getSanitizedTheme)
   const location = useLocation()
@@ -40,6 +47,7 @@ export default function App() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+    document.title = PAGE_TITLES[location.pathname] || 'ASTRA AI — Build What Comes Next'
   }, [location.pathname, reduceMotion])
 
   return (
