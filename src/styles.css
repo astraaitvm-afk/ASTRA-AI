@@ -854,6 +854,40 @@ a {
   letter-spacing: 0.18em;
 }
 
+/* Light Theme: Luminous iridescent pearl core (eliminates dark black patch in light mode) */
+:root[data-theme='light'] .visual-core {
+  background: radial-gradient(circle at 35% 25%, #ffffff, #f4f2ff 55%, #e8e4fb);
+  border: 1px solid rgba(115, 85, 235, 0.35);
+  box-shadow: 0 0 0 10px rgba(115, 85, 235, 0.05),
+              0 16px 40px rgba(115, 85, 235, 0.18),
+              inset 0 0 25px rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme='light'] .core-star {
+  color: #7355eb;
+  text-shadow: 0 0 20px rgba(115, 85, 235, 0.45);
+}
+
+:root[data-theme='light'] .visual-core > span {
+  color: #111425;
+}
+
+:root[data-theme='light'] .visual-core small {
+  color: #535d79;
+}
+
+:root[data-theme='light'] .visual-orbit {
+  border-color: rgba(115, 85, 235, 0.2);
+}
+
+:root[data-theme='light'] .orbit-two {
+  border-color: rgba(0, 142, 129, 0.22);
+}
+
+:root[data-theme='light'] .hero-visual::before {
+  background: radial-gradient(circle, rgba(115, 85, 235, 0.15), rgba(0, 142, 129, 0.06) 50%, transparent 70%);
+}
+
 .float-card {
   position: absolute;
   z-index: 3;
@@ -1158,7 +1192,7 @@ a {
   pointer-events: none;
 }
 
-/* Compact Card Image Thumbnail */
+/* Compact Card Image Thumbnail (Clean & Razor Sharp, No Fog Overlay) */
 .course-card-image,
 .marquee-card-image {
   width: 100%;
@@ -1167,6 +1201,7 @@ a {
   position: relative;
   flex-shrink: 0;
   background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
 
 @media (max-width: 480px) {
@@ -1188,15 +1223,6 @@ a {
 .course-card:hover .course-card-image img,
 .marquee-card:hover .marquee-card-image img {
   transform: scale(1.05);
-}
-
-.course-card-image::after,
-.marquee-card-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, var(--surface-solid) 100%);
-  pointer-events: none;
 }
 
 /* Card Body Content (Compact & Ergonomic) */
@@ -1840,6 +1866,32 @@ a {
   font-size: 0.4375rem;
   letter-spacing: 0.16em;
   margin-top: 4px;
+}
+
+:root[data-theme='light'] .about-art-center {
+  background: radial-gradient(circle at 35% 25%, #ffffff, #f4f2ff 60%, #e9e5fc);
+  border: 1px solid rgba(115, 85, 235, 0.35);
+  box-shadow: 0 0 35px rgba(115, 85, 235, 0.14);
+}
+
+:root[data-theme='light'] .about-art-center span {
+  color: #7355eb;
+}
+
+:root[data-theme='light'] .about-art-center b {
+  color: #111425;
+}
+
+:root[data-theme='light'] .about-art-center small {
+  color: #535d79;
+}
+
+:root[data-theme='light'] .ring-a {
+  border-color: rgba(115, 85, 235, 0.22);
+}
+
+:root[data-theme='light'] .ring-b {
+  border-color: rgba(0, 142, 129, 0.22);
 }
 
 .art-note {
