@@ -110,6 +110,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-top: 72px;
 }
 
 /* Standard Fluid Container: max-w-[1560px] with responsive fluid gutters
@@ -315,14 +316,17 @@ a {
    Spans full width across wide screens with zero awkward side gaps
    ========================================================================== */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 100;
   width: 100%;
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav-wrap {
