@@ -41,7 +41,6 @@ export default function Home() {
             <div className="float-card code-float"><div className="mini-window"><i /><i /><i /></div><code><span>const</span> future = <b>you.build()</b>;</code><div className="code-status"><span /> compiled with purpose</div></div>
             <div className="float-card stack-float"><div className="stack-icon"><Layers3 size={19} /></div><div><b>Full-stack thinking</b><small>Frontend → Backend → Beyond</small></div></div>
             <div className="float-card progress-float"><span className="progress-ring">↗</span><div><b>Learn by building</b><small>One project at a time</small></div></div>
-            <div className="visual-caption"><span>01 / YOUR JOURNEY</span><span>SCROLL TO EXPLORE <ArrowDownRight size={14} /></span></div>
           </motion.div>
         </div>
         <div className="hero-bottom container">
