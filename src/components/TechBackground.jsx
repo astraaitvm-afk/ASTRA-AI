@@ -15,7 +15,6 @@ export default function TechBackground() {
     let animationId
     let isPaused = false
     let resizeRaf = null
-    let parallaxRaf = null
 
     let width = (canvas.width = window.innerWidth)
     let height = (canvas.height = window.innerHeight)
@@ -57,43 +56,16 @@ export default function TechBackground() {
       isHovered: false,
     }
 
-    // 3D Parallax glyph references
-    const glyphs = container ? container.querySelectorAll('.code-glyph') : []
-
     const handlePointerMove = (e) => {
       mouse.x = e.clientX
       mouse.y = e.clientY
       mouse.isHovered = true
-
-      // Batch 3D Parallax shift using RAF to prevent layout thrashing
-      if (glyphs.length > 0 && !prefersReducedMotion) {
-        if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
-        parallaxRaf = requestAnimationFrame(() => {
-          const centerX = window.innerWidth * 0.5
-          const centerY = window.innerHeight * 0.5
-          const deltaX = e.clientX - centerX
-          const deltaY = e.clientY - centerY
-
-          glyphs.forEach((el) => {
-            const depth = parseFloat(el.getAttribute('data-depth')) || 0.05
-            const moveX = -(deltaX * depth * 0.85)
-            const moveY = -(deltaY * depth * 0.85)
-            const rotZ = deltaX * depth * 0.04
-            el.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0) rotate(${rotZ.toFixed(2)}deg)`
-          })
-        })
-      }
     }
 
     const handlePointerLeave = () => {
       mouse.isHovered = false
       mouse.x = -1000
       mouse.y = -1000
-      if (glyphs.length > 0) {
-        glyphs.forEach((el) => {
-          el.style.transform = 'translate3d(0, 0, 0)'
-        })
-      }
     }
 
     const handlePointerEnter = () => {
@@ -255,7 +227,6 @@ export default function TechBackground() {
       window.removeEventListener('mouseenter', handlePointerEnter)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       if (resizeRaf) cancelAnimationFrame(resizeRaf)
-      if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
       if (animationId) cancelAnimationFrame(animationId)
     }
   }, [])
@@ -269,16 +240,16 @@ export default function TechBackground() {
       {/* Interactive Constellation / Neural Network Canvas */}
       <canvas ref={canvasRef} className="tech-bg-canvas" />
 
-      {/* Floating Developer Glyphs in Negative Margin Space with 3D Parallax */}
-      <div className="code-glyph glyph-tag-badge glyph-1" data-depth="0.04">
+      {/* Floating Developer Glyphs drifting independently with organic CSS animations */}
+      <div className="code-glyph glyph-tag-badge glyph-1">
         <span className="glyph-symbol">&lt; / &gt;</span>
       </div>
 
-      <div className="code-glyph glyph-square-scope glyph-2" data-depth="0.06" title="Object Scope">
+      <div className="code-glyph glyph-square-scope glyph-2" title="Object Scope">
         <span>&#123; &#125;</span>
       </div>
 
-      <div className="code-glyph glyph-ide-snippet glyph-3" data-depth="0.035">
+      <div className="code-glyph glyph-ide-snippet glyph-3">
         <span className="ide-status-dot" />
         <span className="syn-kw">const</span>
         <span className="syn-var">astra</span>
@@ -288,18 +259,18 @@ export default function TechBackground() {
         <span className="syn-punct">();</span>
       </div>
 
-      <div className="code-glyph glyph-fn-chip glyph-4" data-depth="0.05">
+      <div className="code-glyph glyph-fn-chip glyph-4">
         <span className="syn-arrow">=&gt;</span>
         <span className="syn-kw">async</span>
         <span className="syn-fn">run</span>
         <span className="syn-punct">()</span>
       </div>
 
-      <div className="code-glyph glyph-square-array glyph-5" data-depth="0.07" title="Tensor Matrix">
+      <div className="code-glyph glyph-square-array glyph-5" title="Tensor Matrix">
         <span>[ ]</span>
       </div>
 
-      <div className="code-glyph glyph-term-chip glyph-6" data-depth="0.045">
+      <div className="code-glyph glyph-term-chip glyph-6">
         <span className="term-prompt">$</span>
         <span className="term-cmd">git push origin main</span>
       </div>
