@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Route, Routes, useLocation } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import CursorGlow from './components/CursorGlow.jsx'
@@ -76,6 +77,7 @@ export default function App() {
       </AnimatePresence>
       <Footer />
       <WhatsAppButton />
+      <Analytics />
     </div>
   )
 }
